@@ -1,14 +1,39 @@
+<div align="center">
+
 # Alchequant
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Streamlit](https://img.shields.io/badge/UI-Streamlit-ff4b4b)
-![Backtrader](https://img.shields.io/badge/Backtest-Backtrader-1f77b4)
-![Plotly](https://img.shields.io/badge/Charts-Plotly-3f4f75)
-![Data](https://img.shields.io/badge/Data-AKShare%20%2B%20SQLite-2ea44f)
+**本地量化研究与分析平台**
 
-Alchequant 是一个本地量化研究与分析平台，面向 A 股历史行情数据，覆盖数据管理、技术面分析、策略回测、多策略对比、因子研究和 HTML 综合报告生成。
+面向 A 股历史行情数据，覆盖数据管理、技术面分析、策略回测、多策略对比、因子研究与 HTML 综合报告生成。
 
-它的目标不是做实盘交易系统，而是搭建一个可复现、可解释、可离线运行的量化研究工作台。
+![Python](https://img.shields.io/badge/Python-3.10%2B-2563eb?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-ff4b4b?style=for-the-badge&logo=streamlit&logoColor=white)
+![Backtrader](https://img.shields.io/badge/Backtrader-Engine-0f172a?style=for-the-badge)
+![Plotly](https://img.shields.io/badge/Plotly-Charts-3f4f75?style=for-the-badge&logo=plotly&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-Local_Data-2ea44f?style=for-the-badge&logo=sqlite&logoColor=white)
+
+`AKShare` · `SQLite` · `Backtrader` · `Plotly` · `Streamlit` · `Pandas`
+
+</div>
+
+---
+
+## 目录
+
+- [项目定位](#项目定位)
+- [功能特性](#功能特性)
+- [快速开始](#快速开始)
+- [命令行生成报告](#命令行生成报告)
+- [示例数据](#示例数据)
+- [Notebook 是做什么的](#notebook-是做什么的)
+- [项目结构](#项目结构)
+- [技术栈](#技术栈)
+- [后续计划](#后续计划)
+- [风险提示](#风险提示)
+
+## 项目定位
+
+Alchequant 的目标不是做实盘交易系统，而是搭建一个 **可复现、可解释、可离线运行** 的量化研究工作台。
 
 ## 项目亮点
 
@@ -20,17 +45,30 @@ Alchequant 是一个本地量化研究与分析平台，面向 A 股历史行情
 
 发布版默认包含 SQLite 示例数据库，因此即使没有联网，也可以打开平台并看到真实分析结果。
 
+<table>
+  <tr>
+    <td><strong>本地优先</strong><br/>默认读取 SQLite 示例数据库，减少网络和接口波动影响。</td>
+    <td><strong>研究闭环</strong><br/>从数据、策略、因子到报告，覆盖完整量化分析路径。</td>
+    <td><strong>解释友好</strong><br/>每个策略都展示买卖依据线，报告保留证据链和风险说明。</td>
+  </tr>
+  <tr>
+    <td><strong>轻量部署</strong><br/>纯 Python 技术栈，无需数据库服务、消息队列或实盘网关。</td>
+    <td><strong>可复现</strong><br/>Streamlit、脚本和 Notebook 共用同一套核心模块。</td>
+    <td><strong>可扩展</strong><br/>策略、因子、报告和数据源均按模块拆分。</td>
+  </tr>
+</table>
+
 ## 功能特性
 
 | 模块 | 功能 |
 |---|---|
-| 数据总览 | 查看本地股票池、数据覆盖范围和 OHLCV 记录 |
-| 策略回测 | 支持双均线交叉、RSI 超买超卖、唐奇安通道突破 |
-| 策略对比 | 对比主动策略与买入持有基准的累计收益表现 |
-| 交互图表 | Plotly K 线、成交量、买卖点、策略依据线、净值曲线和回撤区间 |
-| 因子看板 | 基于本地行情计算动量、趋势、风险、活跃度和价格分位评分 |
-| HTML 报告 | 生成技术面、回测指标、风险分析、交易明细和多角色研究摘要 |
-| 可选 AI 增强 | 支持 OpenAI-compatible API 改写报告文字，指标和图表仍由本地计算 |
+| **数据总览** | 查看本地股票池、数据覆盖范围和 OHLCV 记录 |
+| **策略回测** | 支持双均线交叉、RSI 超买超卖、唐奇安通道突破 |
+| **策略对比** | 对比主动策略与买入持有基准的累计收益表现 |
+| **交互图表** | Plotly K 线、成交量、买卖点、策略依据线、净值曲线和回撤区间 |
+| **因子看板** | 基于本地行情计算动量、趋势、风险、活跃度和价格分位评分 |
+| **HTML 报告** | 生成技术面、回测指标、风险分析、交易明细和多角色研究摘要 |
+| **可选 AI 增强** | 支持 OpenAI-compatible API 改写报告文字，指标和图表仍由本地计算 |
 
 ## 快速开始
 
@@ -49,17 +87,23 @@ python -m streamlit run app.py
 http://localhost:8501
 ```
 
-Windows 可以双击：
+<details>
+<summary><strong>Windows 一键启动</strong></summary>
 
 ```text
 run.bat
 ```
 
-macOS / Linux：
+</details>
+
+<details>
+<summary><strong>macOS / Linux 启动</strong></summary>
 
 ```bash
 bash run_mac.sh
 ```
+
+</details>
 
 ## 命令行生成报告
 
@@ -128,6 +172,31 @@ Notebook 里的代码刻意保持简洁，因为正式逻辑都封装在 `src/` 
 | `06_策略库扩展.ipynb` | 对比双均线、RSI、唐奇安三类策略 |
 | `07_综合报告生成.ipynb` | 从 Notebook 中生成完整 HTML 报告 |
 | `08_因子研究看板.ipynb` | 复现 Streamlit 因子看板背后的评分逻辑 |
+
+## 研究流程
+
+```text
+             ┌────────────────────┐
+             │  AKShare 行情数据   │
+             └─────────┬──────────┘
+                       │
+                       v
+             ┌────────────────────┐
+             │  SQLite 本地缓存    │
+             └─────────┬──────────┘
+                       │
+       ┌───────────────┼────────────────┐
+       v               v                v
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ Streamlit UI │  │ CLI 报告脚本 │  │ Notebooks   │
+└──────┬──────┘  └──────┬──────┘  └──────┬──────┘
+       │                │                │
+       └───────────────┼────────────────┘
+                       v
+             ┌────────────────────┐
+             │ src/ 核心研究模块   │
+             └────────────────────┘
+```
 
 ## 项目结构
 
