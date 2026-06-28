@@ -2,19 +2,15 @@
 
 # Alchequant
 
-### 一个放在本地运行的 A 股量化研究工作台
+### 本地量化研究与分析平台
 
-从行情数据、技术面分析、策略回测，到因子筛选和 HTML 报告，尽量把量化研究里最常用的一条链路做成一个干净、可复现、能直接打开的工具。
+把 A 股历史行情、技术面分析、策略回测、因子观察和 HTML 报告整理到一个本地工作台里。
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-2563eb?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10--3.12-2563eb?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-ff4b4b?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Backtrader](https://img.shields.io/badge/Backtrader-Engine-0f172a?style=for-the-badge)
 ![Plotly](https://img.shields.io/badge/Plotly-Charts-3f4f75?style=for-the-badge&logo=plotly&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-Local_Data-2ea44f?style=for-the-badge&logo=sqlite&logoColor=white)
-
-`AKShare` · `SQLite` · `Backtrader` · `Plotly` · `Streamlit` · `Pandas`
-
-<br/>
 
 ![Alchequant 本地量化研究工作台](assets/alchequant-readme-hero.png)
 
@@ -22,37 +18,38 @@
 
 ---
 
-## 为什么做这个
+## 一句话介绍
 
-很多量化项目要么偏实盘交易，要么偏在线数据接口，要么偏大模型聊天。Alchequant 想做得更朴素一点：让数据留在本地，让指标和回测可复现，让图表和报告能说清楚“为什么是这个结论”。
+Alchequant 不是实盘交易软件，也不是聊天式选股助手。它更像一张本地研究桌：数据在本地、逻辑可复现、图表能交互、报告能导出。
 
-它更像一个研究桌面，而不是交易按钮。适合用来做课程项目、策略实验、股票池观察、报告生成和本地量化分析流程演示。
+适合用来做课程项目、策略实验、股票池观察、研究报告生成和量化分析流程展示。
 
-## 打开以后能做什么
+## 核心体验
 
-| 场景 | 你会看到什么 |
-|---|---|
-| **看数据** | 本地股票池、数据覆盖范围、每只股票的日线记录 |
-| **跑策略** | 双均线交叉、RSI 超买超卖、唐奇安通道突破 |
-| **看买卖依据** | K 线图上直接显示均线、RSI 阈值、唐奇安通道上下轨 |
-| **比较策略** | 统一从 0% 起步，看不同策略和买入持有基准谁更稳 |
-| **做横截面研究** | 用动量、趋势、风险、活跃度、价格分位给股票池打分 |
-| **出报告** | 生成 HTML 综合报告，包含技术面、回测表现、风险和交易明细 |
-| **接入 AI 改写** | 可选调用 OpenAI-compatible API，让报告文字更自然，但数据仍由本地计算 |
+<table>
+  <tr>
+    <td width="33%"><b>本地可跑</b><br/>默认带 SQLite 示例库，不联网也能看到真实分析结果。</td>
+    <td width="33%"><b>解释清楚</b><br/>K 线图上直接显示均线、RSI 阈值、唐奇安通道和买卖点。</td>
+    <td width="33%"><b>报告完整</b><br/>把技术面、回测、回撤、交易明细和风险说明整理成 HTML。</td>
+  </tr>
+  <tr>
+    <td><b>策略可比</b><br/>双均线、RSI、唐奇安统一回测口径，和买入持有基准对照。</td>
+    <td><b>因子观察</b><br/>用动量、趋势、风险、活跃度和价格分位给股票池做横截面评分。</td>
+    <td><b>研究可复现</b><br/>Streamlit、命令行和 Notebook 共用同一套 <code>src/</code> 模块。</td>
+  </tr>
+</table>
 
 ## 研究链路
-
-Alchequant 的核心思路是把研究流程串起来，而不是让每一步散落在不同脚本里：
 
 ```text
 本地行情数据 -> 技术面结构 -> 策略回测 -> 因子排名 -> HTML 报告
 ```
 
-默认包含 SQLite 示例数据库，所以即使不联网，也可以直接打开平台看真实结果。
+这条链路是项目的主线。界面适合交互分析，脚本适合自动生成报告，Notebook 适合复现实验过程。
 
 ## 快速开始
 
-建议使用 Python 3.10 或更高版本。
+建议使用 Python 3.10 到 3.12。
 
 ```bash
 git clone https://github.com/<your-user>/Alchequant.git
@@ -61,13 +58,13 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-启动后访问：
+浏览器打开：
 
 ```text
 http://localhost:8501
 ```
 
-Windows 可以直接双击：
+Windows 可以双击：
 
 ```text
 run.bat
@@ -79,21 +76,39 @@ macOS / Linux：
 bash run_mac.sh
 ```
 
-## 命令行报告
+## 换电脑后怎么确认能不能用
 
-有时候不想打开页面，只想快速生成一份报告，也可以直接走脚本。
+安装依赖后，先跑自检：
+
+```bash
+python scripts/smoke_test.py
+```
+
+它会依次检查：
+
+- 核心依赖是否能导入
+- `data/stocks.db` 是否存在且可读
+- 示例股票是否能跑回测
+- 因子评分是否能计算
+- HTML 报告是否能生成
+
+看到 `全部自检通过。`，说明这台电脑上的核心链路已经跑通。
+
+## 命令行生成报告
+
+默认双均线报告：
 
 ```bash
 python scripts/generate_report.py --code 000001 --strategy sma --no-open
 ```
 
-换成 RSI：
+RSI 策略报告：
 
 ```bash
 python scripts/generate_report.py --code 000001 --strategy rsi --period 14 --oversold 30 --overbought 70 --no-open
 ```
 
-换成唐奇安通道：
+唐奇安通道报告：
 
 ```bash
 python scripts/generate_report.py --code 000001 --strategy donchian --entry-period 20 --exit-period 10 --no-open
@@ -105,7 +120,7 @@ python scripts/generate_report.py --code 000001 --strategy donchian --entry-peri
 python scripts/generate_report.py --code 000001 --llm --llm-api-key YOUR_KEY --llm-model gpt-4o-mini --no-open
 ```
 
-AI 只负责把文字写得更顺，不参与指标、图表、支撑压力位和回测结果计算。
+AI 只负责把报告文字写得更顺，不参与指标、图表、支撑压力位和回测结果计算。
 
 ## 示例数据
 
@@ -129,7 +144,7 @@ python scripts/download_data.py
 
 ## 研究笔记
 
-`notebooks/` 提供一组轻量研究笔记，用来复现数据读取、指标计算、策略回测、报告生成和因子评分等关键步骤。正式逻辑仍然放在 `src/` 中，Notebook 只负责展示研究过程。
+`notebooks/` 提供一组轻量研究笔记，用来复现数据读取、指标计算、策略回测、报告生成和因子评分等关键步骤。
 
 ## 项目结构
 
@@ -152,8 +167,9 @@ Alchequant/
 ├── scripts/
 │   ├── download_data.py      # 下载/增量更新数据
 │   ├── generate_report.py    # 命令行生成 HTML 报告
-│   └── list_stocks.py        # 导出本地股票清单
-├── notebooks/                # 可复现研究路线
+│   ├── list_stocks.py        # 导出本地股票清单
+│   └── smoke_test.py         # 发布版自检脚本
+├── notebooks/                # 可复现研究笔记
 ├── data/
 │   └── stocks.db             # 示例 SQLite 数据库
 ├── results/                  # 运行时输出目录
