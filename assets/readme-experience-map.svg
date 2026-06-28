@@ -1,0 +1,111 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111f"/>
+      <stop offset="0.52" stop-color="#101827"/>
+      <stop offset="1" stop-color="#151028"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#18243a" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#101827" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#615fff"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+    <style>
+      .title { font: 700 34px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #f8fafc; }
+      .subtitle { font: 400 17px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #94a3b8; }
+      .card-title { font: 700 21px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #e5eefb; }
+      .card-text { font: 400 14px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #9fb0c8; }
+      .label { font: 700 13px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #c7d2fe; letter-spacing: .5px; }
+      .metric { font: 700 26px "Inter", Arial, sans-serif; fill: #f8fafc; }
+      .tiny { font: 400 12px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #72809a; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="640" rx="34" fill="url(#bg)"/>
+  <circle cx="1080" cy="82" r="180" fill="#615fff" opacity="0.16"/>
+  <circle cx="155" cy="580" r="210" fill="#38bdf8" opacity="0.11"/>
+  <path d="M74 118C244 74 342 176 514 128C709 74 772 90 932 141C1058 181 1138 132 1228 96" stroke="#334155" stroke-width="1.2" opacity="0.4"/>
+  <path d="M70 500C262 444 359 536 528 494C697 452 776 397 946 442C1075 477 1134 529 1228 486" stroke="#334155" stroke-width="1.2" opacity="0.34"/>
+
+  <text x="70" y="72" class="title">Alchequant 能力地图</text>
+  <text x="70" y="104" class="subtitle">把本地行情、策略回测、因子研究和报告输出放在同一个可复现工作台里。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="150" width="350" height="190" rx="22" fill="url(#panel)" stroke="#24324a"/>
+    <rect x="94" y="174" width="112" height="26" rx="13" fill="#0f1a2d" stroke="#263852"/>
+    <text x="110" y="192" class="label">DATA CORE</text>
+    <text x="94" y="232" class="card-title">本地数据底座</text>
+    <text x="94" y="264" class="card-text">SQLite 示例库离线可跑，AKShare 可扩展更新。</text>
+    <text x="94" y="302" class="metric">65,699</text>
+    <text x="206" y="302" class="tiny">条日线记录</text>
+    <rect x="286" y="198" width="82" height="82" rx="16" fill="#10213b" stroke="#2b4c79"/>
+    <path d="M300 260h54M300 240h54M300 220h54" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="465" y="150" width="350" height="190" rx="22" fill="url(#panel)" stroke="#24324a"/>
+    <rect x="489" y="174" width="132" height="26" rx="13" fill="#0f1a2d" stroke="#263852"/>
+    <text x="505" y="192" class="label">BACKTEST LAB</text>
+    <text x="489" y="232" class="card-title">策略回测实验室</text>
+    <text x="489" y="264" class="card-text">双均线、RSI、唐奇安，统一回测口径。</text>
+    <path d="M494 304C526 286 548 315 579 292C611 268 633 292 665 270C697 248 720 265 777 226" stroke="url(#blue)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="579" cy="292" r="5" fill="#38bdf8"/>
+    <circle cx="665" cy="270" r="5" fill="#a78bfa"/>
+    <circle cx="777" cy="226" r="5" fill="#f59e0b"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="860" y="150" width="350" height="190" rx="22" fill="url(#panel)" stroke="#24324a"/>
+    <rect x="884" y="174" width="112" height="26" rx="13" fill="#0f1a2d" stroke="#263852"/>
+    <text x="900" y="192" class="label">FACTOR VIEW</text>
+    <text x="884" y="232" class="card-title">股票池横截面研究</text>
+    <text x="884" y="264" class="card-text">动量、趋势、风险、活跃度和价格分位评分。</text>
+    <rect x="884" y="292" width="48" height="20" rx="5" fill="#38bdf8"/>
+    <rect x="944" y="284" width="70" height="28" rx="5" fill="#615fff"/>
+    <rect x="1026" y="300" width="42" height="12" rx="5" fill="#f59e0b"/>
+    <rect x="1080" y="276" width="86" height="36" rx="5" fill="#ef5350"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="388" width="350" height="170" rx="22" fill="url(#panel)" stroke="#24324a"/>
+    <rect x="94" y="412" width="120" height="26" rx="13" fill="#0f1a2d" stroke="#263852"/>
+    <text x="110" y="430" class="label">VISUAL UI</text>
+    <text x="94" y="470" class="card-title">交互式研究界面</text>
+    <text x="94" y="502" class="card-text">K 线、净值、交易明细、时间范围联动。</text>
+    <path d="M294 512v-70M318 512v-98M342 512v-48M366 512v-122" stroke="url(#amber)" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="465" y="388" width="350" height="170" rx="22" fill="url(#panel)" stroke="#24324a"/>
+    <rect x="489" y="412" width="125" height="26" rx="13" fill="#0f1a2d" stroke="#263852"/>
+    <text x="505" y="430" class="label">REPORTING</text>
+    <text x="489" y="470" class="card-title">HTML 综合报告</text>
+    <text x="489" y="502" class="card-text">把技术面、回测、风险和交易证据整理成报告。</text>
+    <rect x="687" y="420" width="78" height="108" rx="10" fill="#eef2ff" opacity="0.9"/>
+    <rect x="701" y="444" width="40" height="8" rx="4" fill="#615fff"/>
+    <rect x="701" y="466" width="50" height="8" rx="4" fill="#94a3b8"/>
+    <rect x="701" y="488" width="35" height="26" rx="5" fill="#38bdf8"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="860" y="388" width="350" height="170" rx="22" fill="url(#panel)" stroke="#24324a"/>
+    <rect x="884" y="412" width="112" height="26" rx="13" fill="#0f1a2d" stroke="#263852"/>
+    <text x="900" y="430" class="label">NOTEBOOKS</text>
+    <text x="884" y="470" class="card-title">可复现实验路线</text>
+    <text x="884" y="502" class="card-text">Notebook 调用 src 核心模块，展示研究过程。</text>
+    <circle cx="1100" cy="468" r="24" fill="#1e293b" stroke="#38bdf8"/>
+    <circle cx="1052" cy="514" r="18" fill="#1e293b" stroke="#a78bfa"/>
+    <circle cx="1146" cy="514" r="18" fill="#1e293b" stroke="#f59e0b"/>
+    <path d="M1084 486l-20 16M1116 486l18 17" stroke="#64748b" stroke-width="2"/>
+  </g>
+</svg>

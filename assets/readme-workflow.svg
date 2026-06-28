@@ -1,0 +1,70 @@
+<svg width="1280" height="420" viewBox="0 0 1280 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b1220"/>
+      <stop offset="0.52" stop-color="#111827"/>
+      <stop offset="1" stop-color="#141024"/>
+    </linearGradient>
+    <linearGradient id="line" x1="120" y1="210" x2="1160" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38bdf8"/>
+      <stop offset="0.5" stop-color="#615fff"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-40%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#615fff" flood-opacity="0.35"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <style>
+      .title { font: 700 32px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #f8fafc; }
+      .sub { font: 400 16px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #94a3b8; }
+      .step { font: 700 20px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #e5eefb; }
+      .desc { font: 400 13px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #9fb0c8; }
+      .num { font: 700 16px "Inter", Arial, sans-serif; fill: #020617; }
+    </style>
+  </defs>
+  <rect width="1280" height="420" rx="34" fill="url(#bg)"/>
+  <circle cx="1080" cy="20" r="180" fill="#615fff" opacity="0.14"/>
+  <circle cx="180" cy="410" r="180" fill="#38bdf8" opacity="0.10"/>
+
+  <text x="72" y="70" class="title">从本地数据到研究报告</text>
+  <text x="72" y="102" class="sub">不用把数据、回测、因子和报告拆成一堆孤立脚本，Alchequant 把它们串成一条清楚的研究路径。</text>
+
+  <path d="M150 220H1130" stroke="url(#line)" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+  <path d="M1120 220l-22-14M1120 220l-22 14" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+
+  <g filter="url(#glow)">
+    <rect x="90" y="150" width="180" height="150" rx="22" fill="#111c31" stroke="#263852"/>
+    <circle cx="132" cy="186" r="18" fill="#38bdf8"/>
+    <text x="126" y="192" class="num">1</text>
+    <text x="120" y="236" class="step">本地数据</text>
+    <text x="120" y="266" class="desc">SQLite 缓存</text>
+  </g>
+  <g filter="url(#glow)">
+    <rect x="310" y="150" width="180" height="150" rx="22" fill="#111c31" stroke="#263852"/>
+    <circle cx="352" cy="186" r="18" fill="#60a5fa"/>
+    <text x="346" y="192" class="num">2</text>
+    <text x="340" y="236" class="step">技术分析</text>
+    <text x="340" y="266" class="desc">均线 / MACD / RSI</text>
+  </g>
+  <g filter="url(#glow)">
+    <rect x="530" y="150" width="180" height="150" rx="22" fill="#111c31" stroke="#263852"/>
+    <circle cx="572" cy="186" r="18" fill="#818cf8"/>
+    <text x="566" y="192" class="num">3</text>
+    <text x="560" y="236" class="step">策略回测</text>
+    <text x="560" y="266" class="desc">收益 / 回撤 / 交易</text>
+  </g>
+  <g filter="url(#glow)">
+    <rect x="750" y="150" width="180" height="150" rx="22" fill="#111c31" stroke="#263852"/>
+    <circle cx="792" cy="186" r="18" fill="#a78bfa"/>
+    <text x="786" y="192" class="num">4</text>
+    <text x="780" y="236" class="step">因子看板</text>
+    <text x="780" y="266" class="desc">横截面评分</text>
+  </g>
+  <g filter="url(#glow)">
+    <rect x="970" y="150" width="180" height="150" rx="22" fill="#111c31" stroke="#263852"/>
+    <circle cx="1012" cy="186" r="18" fill="#f59e0b"/>
+    <text x="1006" y="192" class="num">5</text>
+    <text x="1000" y="236" class="step">HTML 报告</text>
+    <text x="1000" y="266" class="desc">证据链与风险提示</text>
+  </g>
+</svg>
