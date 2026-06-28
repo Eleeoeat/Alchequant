@@ -34,6 +34,7 @@ DeepSeek_api_Opencode.txt
 results/charts/*
 results/reports/*
 results/factors/*
+results/smoke_test/*
 !results/charts/.gitkeep
 !results/reports/.gitkeep
 !results/factors/.gitkeep
