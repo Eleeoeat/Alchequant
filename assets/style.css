@@ -1,0 +1,6 @@
+/* Streamlit 自定义样式 */
+/* 深色金融终端主题 */
+
+.stButton button {
+    font-weight: 600 !important;
+}

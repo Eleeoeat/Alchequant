@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit / local caches
+.streamlit/secrets.toml
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local agent/plugin state
+.agents/
+.claude/
+.codex/
+
+# Secrets and local credentials
+.env
+.env.*
+*api*key*
+*API*KEY*
+DeepSeek_api_Opencode.txt
+
+# Generated outputs
+results/charts/*
+results/reports/*
+results/factors/*
+!results/charts/.gitkeep
+!results/reports/.gitkeep
+!results/factors/.gitkeep
+
+# Local database sidecars
+*.db-shm
+*.db-wal
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Archives
+*.zip
+*.7z
+*.rar
