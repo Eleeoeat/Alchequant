@@ -1,162 +1,192 @@
 # Alchequant
 
-Alchequant 是一个本地量化研究与分析平台，面向 A 股历史行情数据，提供数据查看、策略回测、多策略对比、因子研究和 HTML 综合报告生成。
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Streamlit](https://img.shields.io/badge/UI-Streamlit-ff4b4b)
+![Backtrader](https://img.shields.io/badge/Backtest-Backtrader-1f77b4)
+![Plotly](https://img.shields.io/badge/Charts-Plotly-3f4f75)
+![Data](https://img.shields.io/badge/Data-AKShare%20%2B%20SQLite-2ea44f)
 
-项目定位是“本地研究工作台”，不是实盘交易系统，也不构成投资建议。默认读取本地 SQLite 示例数据，离线也可以打开平台并复现主要分析流程。
+Alchequant is a local quantitative research workstation for A-share historical data. It combines data management, technical analysis, strategy backtesting, cross-strategy comparison, factor research, and HTML report generation in one Streamlit app.
 
-## 功能特性
+Alchequant 是一个本地量化研究工作台，面向 A 股历史行情数据，覆盖数据管理、技术面分析、策略回测、多策略对比、因子研究和 HTML 综合报告生成。
 
-- 本地数据管理：使用 SQLite 保存股票列表和日线 OHLCV 数据。
-- 策略回测：基于 Backtrader 支持双均线、RSI 超买超卖、唐奇安通道突破。
-- 策略对比：用累计收益率视角比较主动策略与买入持有基准。
-- 交互图表：Plotly K 线、成交量、买卖点、策略依据线、净值曲线和回撤标注。
-- 因子看板：基于本地行情计算动量、趋势、风险、活跃度和价格分位评分。
-- HTML 报告：生成技术面 + 回测 + 风险 + 多角色研究摘要的综合报告。
-- 可选 AI 增强：支持 OpenAI-compatible Chat Completions，只改写报告文字，不参与指标计算。
+> This project is for research and education only. It is not a trading system and does not provide investment advice.
 
-## 快速开始
+## Why Alchequant
 
-建议使用 Python 3.10+。
+Many financial AI projects focus on online news, LLM agents, or cloud workflows. Alchequant focuses on a smaller but reproducible loop:
+
+```text
+Local data -> Technical analysis -> Strategy backtest -> Factor ranking -> HTML report
+```
+
+The default release includes a local SQLite sample database, so the app can run offline and still show real analysis results.
+
+## Features
+
+| Module | What it does |
+|---|---|
+| Data overview | Browse local stock coverage, date ranges, and OHLCV records |
+| Strategy backtest | Run SMA crossover, RSI reversal, and Donchian breakout strategies |
+| Strategy comparison | Compare active strategies against a buy-and-hold benchmark |
+| Interactive charts | Plotly K-line, volume, strategy signals, equity curve, and drawdown region |
+| Factor research | Rank the local stock pool by momentum, trend, risk, liquidity, and price-position factors |
+| HTML report | Generate a structured stock report with technical evidence, backtest metrics, risk analysis, and trade details |
+| Optional AI writing | Use an OpenAI-compatible API to rewrite report text while keeping all numbers local and deterministic |
+
+## Quick Start
 
 ```bash
+git clone https://github.com/<your-user>/Alchequant.git
+cd Alchequant
 python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-Windows 也可以双击：
-
-```text
-run.bat
-```
-
-macOS / Linux：
-
-```bash
-bash run_mac.sh
-```
-
-打开浏览器访问：
+Then open:
 
 ```text
 http://localhost:8501
 ```
 
-## 示例数据
+Windows:
 
-发布版默认包含 `data/stocks.db` 示例数据库：
-
-- 成分股清单：280 只
-- 有日线数据股票：28 只
-- 日线记录：65,699 行
-- 数据范围：2015-01-05 至 2025-12-31
-- 数据来源：AKShare 获取后缓存到本地 SQLite
-
-示例数据用于离线演示和功能复现，不代表完整沪深 300 数据集。需要更新或补全数据时，可运行：
-
-```bash
-python scripts/download_data.py
+```text
+run.bat
 ```
 
-该命令会访问 AKShare 数据源，受网络、代理和接口限流影响。
+macOS / Linux:
 
-## 命令行报告
+```bash
+bash run_mac.sh
+```
 
-生成默认双均线报告：
+## Command Line Report
+
+Generate a default SMA crossover report:
 
 ```bash
 python scripts/generate_report.py --code 000001 --strategy sma --no-open
 ```
 
-生成 RSI 报告：
+Generate an RSI report:
 
 ```bash
 python scripts/generate_report.py --code 000001 --strategy rsi --period 14 --oversold 30 --overbought 70 --no-open
 ```
 
-生成唐奇安通道报告：
+Generate a Donchian breakout report:
 
 ```bash
 python scripts/generate_report.py --code 000001 --strategy donchian --entry-period 20 --exit-period 10 --no-open
 ```
 
-启用可选 AI 增强：
+Enable optional AI-enhanced writing:
 
 ```bash
 python scripts/generate_report.py --code 000001 --llm --llm-api-key YOUR_KEY --llm-model gpt-4o-mini --no-open
 ```
 
-也可以通过环境变量提供密钥：
+The AI layer only rewrites report text. Indicators, charts, support/resistance levels, and backtest results are calculated locally.
+
+## Data
+
+The release includes `data/stocks.db`, a small local SQLite sample database:
+
+| Item | Value |
+|---|---:|
+| Stock list | 280 constituents |
+| Stocks with OHLCV data | 28 |
+| Daily records | 65,699 |
+| Date range | 2015-01-05 to 2025-12-31 |
+| Original source | AKShare, cached locally |
+
+To update or extend the local database:
 
 ```bash
-set LLM_API_KEY=YOUR_KEY
-set LLM_BASE_URL=https://api.openai.com/v1
-set LLM_MODEL=gpt-4o-mini
-python scripts/generate_report.py --code 000001 --llm --no-open
+python scripts/download_data.py
 ```
 
-API Key 不应写入项目文件，也不应提交到 GitHub。
+This command requires network access and may be affected by proxy settings, source availability, or API rate limits.
 
-## 项目结构
+## Research Notebooks
+
+The notebooks are a reproducible research guide, not a second implementation of the app.
+
+They intentionally contain compact code because the real logic lives in `src/`. Each notebook imports the same production modules used by Streamlit and demonstrates one research step:
+
+| Notebook | Purpose |
+|---|---|
+| `01_获取数据.ipynb` | Inspect the SQLite database and sample coverage |
+| `02_数据清洗.ipynb` | Check OHLCV quality and calculate returns |
+| `03_技术指标.ipynb` | Use `src.analysis` to generate technical indicators and structured conclusions |
+| `04_第一个策略.ipynb` | Run the first SMA crossover backtest through `run_backtest_detailed()` |
+| `05_回测与评价.ipynb` | Calculate benchmark return, excess return, drawdown, and trade quality |
+| `06_策略库扩展.ipynb` | Compare SMA, RSI, and Donchian strategies |
+| `07_综合报告生成.ipynb` | Generate a full HTML report from notebook code |
+| `08_因子研究看板.ipynb` | Reproduce the factor ranking logic behind the Streamlit factor page |
+
+This design keeps notebooks stable and readable: if the app logic improves, notebooks automatically use the updated modules instead of drifting into an outdated copy.
+
+## Project Structure
 
 ```text
 Alchequant/
-├── app.py                    # Streamlit 主界面
-├── src/                      # 核心模块
-│   ├── analysis.py           # 技术面分析
-│   ├── backtest.py           # Backtrader 回测封装
-│   ├── charts.py             # Plotly 图表
-│   ├── config.py             # 颜色、主题和默认配置
-│   ├── database.py           # SQLite 读写
-│   ├── data_fetcher.py       # AKShare 数据获取
-│   ├── factors.py            # 因子研究与评分
-│   ├── llm_report.py         # 可选 AI 报告文字增强
-│   ├── report.py             # HTML 报告生成
-│   ├── report_agents.py      # 本地规则化多角色研究摘要
-│   ├── strategy.py           # 策略类
-│   └── utils.py              # 工具函数
+├── app.py                    # Streamlit app
+├── src/
+│   ├── analysis.py           # Technical analysis
+│   ├── backtest.py           # Backtrader wrapper
+│   ├── charts.py             # Plotly charts
+│   ├── config.py             # Theme and defaults
+│   ├── database.py           # SQLite access
+│   ├── data_fetcher.py       # AKShare data fetcher
+│   ├── factors.py            # Factor scoring
+│   ├── llm_report.py         # Optional AI report writing
+│   ├── report.py             # HTML report generation
+│   ├── report_agents.py      # Rule-based multi-role research summary
+│   ├── strategy.py           # Backtrader strategies
+│   └── utils.py              # Shared utilities
 ├── scripts/
-│   ├── download_data.py      # 下载/增量更新数据
-│   ├── generate_report.py    # 命令行生成 HTML 报告
-│   └── list_stocks.py        # 导出本地股票清单
-├── notebooks/                # 研究路线 Notebook
+│   ├── download_data.py
+│   ├── generate_report.py
+│   └── list_stocks.py
+├── notebooks/
 ├── data/
-│   └── stocks.db             # 示例 SQLite 数据库
-├── results/                  # 运行时输出目录，GitHub 默认不提交临时结果
-├── .streamlit/config.toml    # Streamlit 主题
+│   └── stocks.db
+├── results/
+├── .streamlit/
 ├── requirements.txt
 ├── run.bat
 └── run_mac.sh
 ```
 
-## Notebook 路线
+## Architecture
 
-`notebooks/` 用于复现研究过程：
+```text
+AKShare
+   |
+   v
+SQLite local database
+   |
+   +--> Streamlit app
+   |       +--> technical analysis
+   |       +--> backtest engine
+   |       +--> factor ranking
+   |       +--> Plotly charts
+   |
+   +--> command line report
+   |
+   +--> research notebooks
+```
 
-- 01 获取数据
-- 02 数据清洗
-- 03 技术指标
-- 04 第一个策略
-- 05 回测与评价
-- 06 策略库扩展
-- 07 综合报告生成
-- 08 因子研究看板
+## Roadmap
 
-Notebook 是研究说明材料，正式应用入口仍是 `app.py`。
+- Event study for earnings, dividends, limit-up/limit-down days, and major announcements
+- Portfolio backtesting across multiple stocks and weights
+- More strategy templates and parameter search
+- Report UI tabs for overview, technical analysis, backtest, trades, and export
+- Optional deployment guide for Streamlit Community Cloud or local Docker
 
-## 发布说明
+## Disclaimer
 
-适合提交到 GitHub 的内容包括源码、说明文档、Notebook、示例数据库和通用启动脚本。
-
-不应提交：
-
-- API Key、`.env`、本地密钥文件
-- `.claude/`、`.agents/` 等本地工作区状态
-- `__pycache__/`、`.ipynb_checkpoints/`
-- 大量临时 `results/` 报告和图表
-- 个人电脑绝对路径
-
-详见 `发布清单.md`。
-
-## 风险提示
-
-本项目只用于量化研究、教学和历史数据分析。所有回测结果均依赖历史样本、参数假设和本地数据质量，不能代表未来收益。实际交易还会受到滑点、手续费、停牌、涨跌停、流动性和执行约束影响。
+Alchequant is for research, learning, and reproducible historical analysis. Historical backtests do not imply future returns. Real trading is affected by slippage, liquidity, commissions, taxes, suspensions, price limits, data quality, and execution constraints.
