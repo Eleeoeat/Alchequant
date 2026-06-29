@@ -96,13 +96,7 @@ python scripts/generate_report.py --code 000001 --strategy rsi --period 14 --ove
 python scripts/generate_report.py --code 000001 --strategy donchian --entry-period 20 --exit-period 10 --no-open
 ```
 
-可选 AI 增强：
-
-```bash
-python scripts/generate_report.py --code 000001 --llm --llm-api-key YOUR_KEY --llm-model gpt-4o-mini --no-open
-```
-
-AI 只负责把报告文字写得更顺，不参与指标、图表、支撑压力位和回测结果计算。
+如果配置了 OpenAI-compatible API Key，也可以开启 AI 增强报告。AI 只负责把报告文字写得更顺，不参与指标、图表、支撑压力位和回测结果计算。
 
 ## 示例数据
 
