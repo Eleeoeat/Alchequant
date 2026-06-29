@@ -52,7 +52,7 @@ Alchequant 不是实盘交易软件，也不是聊天式选股助手。它更像
 建议使用 Python 3.10 到 3.12。
 
 ```bash
-git clone https://github.com/<your-user>/Alchequant.git
+git clone https://github.com/Eleeoeat/Alchequant.git
 cd Alchequant
 python -m pip install -r requirements.txt
 python -m streamlit run app.py
