@@ -76,24 +76,6 @@ macOS / Linux：
 bash run_mac.sh
 ```
 
-## 换电脑后怎么确认能不能用
-
-安装依赖后，先跑自检：
-
-```bash
-python scripts/smoke_test.py
-```
-
-它会依次检查：
-
-- 核心依赖是否能导入
-- `data/stocks.db` 是否存在且可读
-- 示例股票是否能跑回测
-- 因子评分是否能计算
-- HTML 报告是否能生成
-
-看到 `全部自检通过。`，说明这台电脑上的核心链路已经跑通。
-
 ## 命令行生成报告
 
 默认双均线报告：
@@ -167,8 +149,7 @@ Alchequant/
 ├── scripts/
 │   ├── download_data.py      # 下载/增量更新数据
 │   ├── generate_report.py    # 命令行生成 HTML 报告
-│   ├── list_stocks.py        # 导出本地股票清单
-│   └── smoke_test.py         # 发布版自检脚本
+│   └── list_stocks.py        # 导出本地股票清单
 ├── notebooks/                # 可复现研究笔记
 ├── data/
 │   └── stocks.db             # 示例 SQLite 数据库
